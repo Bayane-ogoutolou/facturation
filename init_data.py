@@ -17,3 +17,4 @@ print(clients, "\n\n\n", produits)
 #clients (code_client, nom, contact, IFU)
 #produits (code_produit, libelle, prix_unitaire)
 
+
