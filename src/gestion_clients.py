@@ -1,4 +1,8 @@
 import pandas as pd
+import os
+
+base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+clients_path = os.path.join(base_dir, "data", "Clients.xlsx")
 
 def ajouter_client():
     print("\n--- Ajout d’un client ---")
@@ -11,7 +15,7 @@ def ajouter_client():
         print("IFU invalide, doit faire 13 caractères.")
         return
 
-    df = pd.read_excel("data/Clients.xlsx")
+    df = pd.read_excel(clients_path)
     if code_client in df['code_client'].values:
         print("Ce code client existe déjà.")
         return
@@ -24,6 +28,5 @@ def ajouter_client():
     }
 
     df = pd.concat([df, pd.DataFrame([nouveau_client])], ignore_index=True)
-    df.to_excel("data/Clients.xlsx", index=False)
+    df.to_excel(clients_path, index=False)
     print("Client ajouté avec succès.")
-

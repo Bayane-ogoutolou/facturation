@@ -59,7 +59,6 @@ def menu():
 if __name__ == "__main__":
     menu()
 
->>>>>>> 359e42b7870a53f65fd7b57efc878b1567fa9f18
 
 def generer_facture():
     code_client = input("Code client : ")

@@ -5,6 +5,9 @@ from fpdf import FPDF
 from datetime import datetime
 import os
 
+base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+produits_path = os.path.join(base_dir, "data", "Produits.xlsx")
+
 def generer_facture():
     print("\n--- Génération de facture ---")
     type_client = input("Nouveau client (n) ou existant (e) ? ").lower()
@@ -13,7 +16,7 @@ def generer_facture():
         ajouter_client()
     code_client = input("Entrez le code client : ")
 
-    df_produits = pd.read_excel("data/Produits.xlsx")
+    df_produits = pd.read_excel(produits_path)
     lignes_facture = []
     total_ht = 0
 
@@ -45,7 +48,6 @@ def generer_facture():
             'total_ligne': total_ligne
         })
 
-    # Exemple remise (à adapter selon tes règles)
     carte = verifier_carte(code_client)
     taux_reduction = 0
     if carte is not None:
@@ -56,7 +58,6 @@ def generer_facture():
     tva = total_apres_remise * 0.18
     total_ttc = total_apres_remise + tva
 
-    # Génération PDF simplifiée
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font("Arial", size=12)
@@ -82,6 +83,3 @@ def generer_facture():
     nom_pdf = f"factures/Facture_{num_facture}.pdf"
     pdf.output(nom_pdf)
     print(f"Facture générée : {nom_pdf}")
-
-    # Ici tu peux ajouter la logique de création de carte réduction selon montant
-
