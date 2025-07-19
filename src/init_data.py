@@ -6,8 +6,8 @@
 
 import pandas as pd
 
-contenu1 = pd.read_excel('../Clients.xlsx')
-contenu2 = pd.read_excel('../Produits.xlsx')
+contenu1 = pd.read_excel('data/Clients.xlsx')
+contenu2 = pd.read_excel('data/Produits.xlsx')
 
 produits = pd.DataFrame(contenu2)
 clients = pd.DataFrame(contenu1)
