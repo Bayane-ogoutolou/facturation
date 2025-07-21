@@ -60,25 +60,8 @@ if __name__ == "__main__":
     menu()
 
 
-def generer_facture():
-    code_client = input("Code client : ")
-    try:
-        montant = float(input("Montant total de la facture : "))
-    except ValueError:
-        print("Montant invalide.")
-        return
-
-    taux = get_taux_reduction_client(code_client)
-
-    if taux == 0:
-        print("Aucune réduction appliquée (1re facture).")
-        print(f"Total à payer : {montant:.2f} FCFA")
-        creer_carte_reduction(code_client, montant)
-    else:
-        reduction = montant * (taux / 100)
-        total = montant - reduction
-        print(f"Réduction de {taux}% appliquée ({reduction:.2f} FCFA)")
-        print(f"Total à payer : {total:.2f} FCFA")
+#def generer_facture():
+  
 
 def afficher_menu():
     print("\n--- MENU PRINCIPAL ---")
